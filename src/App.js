@@ -14,6 +14,7 @@ const [isLoaded, setIsLoaded] = useState(false);
     if (!isLoaded){
       API.getEmp().then((res) => {
         setEmpData(res.data.results)
+        console.log(res.data.results);
         setIsLoaded(true);
     })
   }
