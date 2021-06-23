@@ -3,6 +3,8 @@ import './App.css';
 import API from "./utils/API";
 import React, {useState,useEffect} from "react";
 import Table from './components/Table';
+import InputField from './components/InputField';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -18,12 +20,16 @@ const [isLoaded, setIsLoaded] = useState(false);
   })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+<nav className="navbar navbar-light bg-light">
+  <div className="container-fluid d-flex justify-content-center">
+    <a className="navbar-brand " href="#">User Directory</a>
+  </div>
+</nav>
+<InputField />     
 <Table isLoaded={isLoaded} empData={empData}/>
     
       
-      </header>
+      
     </div>
   );
 }
