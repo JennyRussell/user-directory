@@ -36,7 +36,7 @@ function Table (props){
 
               </tr>
           )
-        }) : "loading"}
+        }) : <tr></tr>}
             </tbody>
         </table>
         </div>

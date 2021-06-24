@@ -11,16 +11,17 @@ const [empData, setEmpData] = useState("");
 const [filteredEmpData, setFilteredEmpData] = useState(empData);
 const [isLoaded, setIsLoaded] = useState(false);
 
-const handleSearch = event => {
-  let value = event.target.value.toLowerCase();
+const handleSearch = query => {
+  if(query){
+  let value = query.toLowerCase();
   console.log(value);
   let result = [];
-  result = empData.filter((data)=> {
-    return data.emp.search(value) != -1;
+  result = empData.filter((emp)=> {
+    return emp.name.first.toLowerCase().includes(value) || emp.name.last.toLowerCase().includes(value) || emp.location.country.toLowerCase().includes(value) || emp.location.city.toLowerCase().includes(value);
   })
   setFilteredEmpData(result);
 }
-
+}
 
   useEffect(() => {
     if (!isLoaded){
@@ -41,11 +42,8 @@ const handleSearch = event => {
     <a className="navbar-brand " href="#">User Directory</a>
   </div>
 </nav>
-<InputField filteredEmpData={filteredEmpData}/>     
-<Table isLoaded={isLoaded} empData={empData}/>
-    
-      
-      
+<InputField filteredEmpData={filteredEmpData} handleSearch={handleSearch}/>     
+<Table isLoaded={isLoaded} empData={filteredEmpData}/>  
     </div>
   );
 }
