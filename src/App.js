@@ -11,15 +11,19 @@ const [empData, setEmpData] = useState("");
 const [filteredEmpData, setFilteredEmpData] = useState(empData);
 const [isLoaded, setIsLoaded] = useState(false);
 
+// handles the search query
 const handleSearch = query => {
   if(query){
+    // ensures lower case user input still returns results
     let value = query.toLowerCase();
     console.log(value);
     let result = [];
+    // search results filter
     result = empData.filter((emp)=> {
      return emp.name.first.toLowerCase().includes(value) || emp.name.last.toLowerCase().includes(value) || emp.location.country.toLowerCase().includes(value) || emp.location.city.toLowerCase().includes(value);
     }) 
     setFilteredEmpData(result);
+    // if user deletes search query, this returns the original list of employees
   } else if (!query){
     setFilteredEmpData(empData);
     return empData.filter((emp)=> {
@@ -27,12 +31,13 @@ const handleSearch = query => {
      }) 
   }
 }
-
+// API  call to get employee data
   useEffect(() => {
     if (!isLoaded){
       API.getEmp().then((res) => {
         setEmpData(res.data.results)
         setFilteredEmpData(res.data.results)
+        // makes sure that once data is loaded, it doesn't keep refershing it
         setIsLoaded(true);
     }, [])
       .catch(error => {
@@ -47,6 +52,7 @@ const handleSearch = query => {
     <a className="navbar-brand text-light font-weight-bold" href="#">User Directory</a>
   </div>
 </nav>
+{/* components for the input search form and table */}
 <InputField className="d-flex justify-content-center"filteredEmpData={filteredEmpData} handleSearch={handleSearch}/>     
 <Table isLoaded={isLoaded} empData={filteredEmpData}/>  
     </div>

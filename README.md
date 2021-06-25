@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# User Directory
+
+This react app uses hooks in order to pull data from an API and allow for the user to search through the data the API returns by entering search query through an input field. Data is displayed in a table.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

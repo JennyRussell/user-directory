@@ -4,7 +4,7 @@ import './Table.css';
 
 
 
-
+// table component where API data is populated
 function Table (props){
 
     return (

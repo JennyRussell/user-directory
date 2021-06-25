@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { propTypes } from "react-bootstrap/esm/Image";
 
-
+// event handler for the user input search query
 const InputField = (props) => {
     const handleInputChange = (e) => {
       props.handleSearch(e.target.value);
