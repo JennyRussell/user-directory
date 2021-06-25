@@ -13,14 +13,19 @@ const [isLoaded, setIsLoaded] = useState(false);
 
 const handleSearch = query => {
   if(query){
-  let value = query.toLowerCase();
-  console.log(value);
-  let result = [];
-  result = empData.filter((emp)=> {
-    return emp.name.first.toLowerCase().includes(value) || emp.name.last.toLowerCase().includes(value) || emp.location.country.toLowerCase().includes(value) || emp.location.city.toLowerCase().includes(value);
-  })
-  setFilteredEmpData(result);
-}
+    let value = query.toLowerCase();
+    console.log(value);
+    let result = [];
+    result = empData.filter((emp)=> {
+     return emp.name.first.toLowerCase().includes(value) || emp.name.last.toLowerCase().includes(value) || emp.location.country.toLowerCase().includes(value) || emp.location.city.toLowerCase().includes(value);
+    }) 
+    setFilteredEmpData(result);
+  } else if (!query){
+    setFilteredEmpData(empData);
+    return empData.filter((emp)=> {
+      return true;
+     }) 
+  }
 }
 
   useEffect(() => {
@@ -37,12 +42,12 @@ const handleSearch = query => {
   }, [])
   return (
     <div className="App">
-<nav className="navbar navbar-light bg-light">
+<nav className="navbar navbar-light bg-secondary">
   <div className="container-fluid d-flex justify-content-center">
-    <a className="navbar-brand " href="#">User Directory</a>
+    <a className="navbar-brand text-light font-weight-bold" href="#">User Directory</a>
   </div>
 </nav>
-<InputField filteredEmpData={filteredEmpData} handleSearch={handleSearch}/>     
+<InputField className="d-flex justify-content-center"filteredEmpData={filteredEmpData} handleSearch={handleSearch}/>     
 <Table isLoaded={isLoaded} empData={filteredEmpData}/>  
     </div>
   );
